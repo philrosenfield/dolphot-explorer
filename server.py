@@ -1,6 +1,6 @@
 from flask import Flask, render_template
 
-from bokeh.embed import server_document, components
+from bokeh.embed import components
 from bokeh.layouts import column
 from bokeh.models import ColumnDataSource, Slider
 from bokeh.plotting import figure
