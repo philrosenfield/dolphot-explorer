@@ -15,5 +15,3 @@ requests = "*"
 [requires]
 
 python_version = "3.6"
-bokeh_version = "0.12.13"
-flask_version = "0.12.2"
