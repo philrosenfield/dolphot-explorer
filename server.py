@@ -1,13 +1,13 @@
-from flask import Flask, render_template
+from flask import Flask  # , render_template
 
-from bokeh.embed import components
-from bokeh.layouts import column
-from bokeh.models import ColumnDataSource, Slider
-from bokeh.plotting import figure
-from bokeh.server.server import Server
-from bokeh.themes import Theme
+# from bokeh.embed import components
+# from bokeh.layouts import column
+# from bokeh.models import ColumnDataSource, Slider
+# from bokeh.plotting import figure
+# from bokeh.server.server import Server
+# from bokeh.themes import Theme
 
-from bokeh.sampledata.sea_surface_temperature import sea_surface_temperature
+# from bokeh.sampledata.sea_surface_temperature import sea_surface_temperature
 
 app = Flask(__name__)
 
