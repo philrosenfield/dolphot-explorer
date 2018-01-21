@@ -6,11 +6,6 @@ verify_ssl = true
 
 [packages]
 
-bokeh = "0.12.13"
-pandas = "*"
-astropy = "*"
-numpy = "*"
-
 [requires]
 
 python_version = "3.6"
