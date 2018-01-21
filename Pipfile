@@ -6,11 +6,9 @@ verify_ssl = true
 
 [packages]
 
-gunicorn = "*"
-flask = "*"
 bokeh = "*"
 pandas = "*"
-
+astropy = "*"
 
 [requires]
 
