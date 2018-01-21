@@ -6,7 +6,7 @@ verify_ssl = true
 
 [packages]
 
-bokeh = "*"
+bokeh = "0.12.13"
 pandas = "*"
 astropy = "*"
 numpy = "*"
