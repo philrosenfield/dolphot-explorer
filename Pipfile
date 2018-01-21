@@ -9,6 +9,7 @@ verify_ssl = true
 bokeh = "*"
 pandas = "*"
 astropy = "*"
+numpy = "*"
 
 [requires]
 
