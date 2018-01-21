@@ -143,8 +143,8 @@ def invert_axes_handler(option):
 
 
 def load_data():
-    # base = "./gst"
-    base = "../dolphot-explorer/gst/"
+    base = "./gst"
+    # base = "../dolphot-explorer/gst/"
     files = [os.path.join(base, l) for l in os.listdir(base)
              if l.endswith('fits')]
 
