@@ -1,7 +1,8 @@
 import os
+import itertools
+
 import pandas as pd
 import numpy as np
-import itertools
 
 from astropy.table import Table
 
@@ -10,10 +11,6 @@ from bokeh.models import Select, Slider
 from bokeh.models.widgets import CheckboxButtonGroup, RangeSlider
 from bokeh.palettes import Spectral5
 from bokeh.plotting import curdoc, figure, gridplot
-
-# from flask import Flask, render_template
-
-# app = Flask(__name__)
 
 
 def minmax(d, dparam):
