@@ -85,7 +85,7 @@ def create_figure(xflipped=False, yflipped=False, cmd=True):
               'output_backend': "webgl",
               'x_range': xdr,
               'y_range': ydr,
-              'tools': "pan,zoom_in,zoom_out,box_zoom,reset,save"}
+              'tools': "pan,zoom_in,zoom_out,box_zoom,box_select,reset,save"}
 
     c = "#31AADE"
     if color.value != 'None':  # odd that bokeh needs 'None' not None
