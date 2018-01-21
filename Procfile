@@ -1,1 +1,1 @@
-web: bokeh serve --port=$PORT --allow-websocket-origin="*" --address=0.0.0.0 --use-xheaders dolphot-explorer.py
+web: bokeh serve --port=$PORT --use-xheaders --log-level=debug dolphot-explorer.py
