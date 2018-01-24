@@ -1,3 +1,4 @@
+"""Dolphot Explorer Bokeh Figure and Widgets"""
 import os
 import itertools
 
@@ -34,6 +35,7 @@ def minmax(d, dparam):
 
 
 def limit_data():
+    """Slice data by dolphot values and recovered stars in two filters"""
     fmt = '{:s}_{:s}'
     filter1, filter2 = filters.value.split(',')
     selected = data[
@@ -68,11 +70,15 @@ def limit_data():
 
 
 def create_figure(xflipped=False, yflipped=False, cmd=True):
-    df = limit_data()
+    """Create Bokeh figure"""
     COLORS = Spectral5
+    # Apply data slicing
+    df = limit_data()
+
     xs = df[x.value].values
     ys = df[y.value].values
 
+    # data ranges
     xdr = (xs.min(), xs.max())
     ydr = (ys.min(), ys.max())
     if xflipped:
@@ -87,8 +93,8 @@ def create_figure(xflipped=False, yflipped=False, cmd=True):
               'y_range': ydr,
               'tools': "pan,zoom_in,zoom_out,box_zoom,box_select,reset,save"}
 
-    c = "#31AADE"
-    if color.value != 'None':  # odd that bokeh needs 'None' not None
+    c = "#31AADE"  # default color if no color-by selection
+    if color.value != 'None':  # odd that bokeh needs 'None' not None...
         groups = pd.qcut(df[color.value].values, len(COLORS), duplicates='drop')
         c = [COLORS[xx] for xx in groups.codes]
 
@@ -140,6 +146,8 @@ def invert_axes_handler(option):
 
 
 def load_data():
+    """load fitsfile into pandas DataFrame and extract the target name"""
+    # This should use requests someday, or allow for user upload.
     base = "./gst"
     # base = "../dolphot-explorer/gst/"
     files = [os.path.join(base, l) for l in os.listdir(base)
@@ -156,9 +164,9 @@ def load_data():
 data, target = load_data()
 
 filters = [f.replace('_VEGA', '') for f in list(data.columns) if 'VEGA' in f]
-filters = [f for f in filters if f.endswith('W')]
-print(filters)
+filters = [f for f in filters if f.endswith('W')]  # excludes narrow bands
 
+# Add two filter combinations (color) to the DataFrame
 filter_combos = []
 for f1, f2 in itertools.combinations(filters, 2):
     fc = ','.join([f1, f2])
@@ -181,10 +189,9 @@ rnds, rnde = minmax(d, 'ROUND')
 cwds, cwde = minmax(d, 'CROWD')
 chis, chie = minmax(d, 'CHI')
 
-filter2 = filter_combos[0].split(',')[1]
+filter2 = filter_combos[0].split(',')[1]  # default filter for left plot
 x = Select(title='x-axis', value='{:s}_VEGA'.format(filter2),
            options=columns)
-
 y = Select(title='y-axis', value='{:s}_ERR'.format(filter2),
            options=columns)
 
@@ -198,18 +205,23 @@ filters = Select(title='filter combination', value=filter_combos[0],
 snr = RangeSlider(start=snrs, end=snre,
                   value=(snrs, snre),
                   step=1, title="SNR range")
+
 err = RangeSlider(start=errs, end=erre,
                   value=(errs, erre),
                   step=.05, title="ERR range")
+
 shp = RangeSlider(start=shps, end=shpe,
                   value=(shps, shpe),
                   step=.1, title="SHARP range")
+
 rnd = RangeSlider(start=rnds, end=rnde,
                   value=(rnds, rnde),
                   step=.1, title="ROUND range")
+
 cwd = RangeSlider(start=cwds, end=cwde,
                   value=(cwds, cwde),
                   step=.1, title="CROWD range")
+
 chi = RangeSlider(start=cwds, end=cwde,
                   value=(chis, chie),
                   step=.1, title="CHI range")
@@ -219,9 +231,7 @@ for ctrl in ctrls:
     ctrl.on_change('value', update)
 
 invert_buttons = CheckboxButtonGroup(labels=["Invert x-axis",
-                                             "Invert y-axis"],
-                                     active=[])
-
+                                             "Invert y-axis"], active=[])
 invert_buttons.on_click(invert_axes_handler)
 
 controls = widgetbox([filters, x, y, color, size, invert_buttons,
