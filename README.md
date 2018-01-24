@@ -1,6 +1,6 @@
 # DOLPHOT Explorer
 
-This is a bokeh app made to run on a heroku server.
+This is a bokeh app made to run on a heroku server: [https://dolphot-explorer.herokuapp.com/dolphot-explorer](https://dolphot-explorer.herokuapp.com/dolphot-explorer)
 
 # Run locally
     bokeh serve --show dolphot-explorer.py
