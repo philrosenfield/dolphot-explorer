@@ -5,7 +5,7 @@ This is a bokeh app made to run on a heroku server: [https://dolphot-explorer.he
 # Run locally
     bokeh serve --show dolphot-explorer.py
 ## Use your own FITS binary table
-   serve --show dolphot-explorer.py --args [path to fits file]
+    serve --show dolphot-explorer.py --args [path to fits file]
 
 # Deploy on a heroku
 - Start by following directions [Getting Started on Heroku with Python](https://devcenter.heroku.com/articles/getting-started-with-python#introduction)
