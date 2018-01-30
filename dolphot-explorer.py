@@ -1,6 +1,7 @@
 """Dolphot Explorer Bokeh Figure and Widgets"""
 import os
 import itertools
+import sys
 
 import pandas as pd
 import numpy as np
@@ -145,15 +146,19 @@ def invert_axes_handler(option):
     return
 
 
-def load_data():
+def load_data(fitsfile=None):
     """load fitsfile into pandas DataFrame and extract the target name"""
     # This should use requests someday, or allow for user upload.
-    base = "./gst"
-    # base = "../dolphot-explorer/gst/"
-    files = [os.path.join(base, l) for l in os.listdir(base)
-             if l.endswith('fits')]
+    if fitsfile is None:
+        base = "./gst"
+        # base = "../dolphot-explorer/gst/"
+        files = [os.path.join(base, l) for l in os.listdir(base)
+                 if l.endswith('fits')]
 
-    filename, = [f for f in files if 'HODGE6.gst.fits' in f]
+        filename, = [f for f in files if 'HODGE6.gst.fits' in f]
+    else:
+        filename = fitsfile
+
     target = os.path.split(filename)[1].split('.gst')[0]
 
     t = Table.read(filename, format='fits')
@@ -161,7 +166,13 @@ def load_data():
     return df, target
 
 
-data, target = load_data()
+fitsfile = None
+if len(sys.argv) > 1:
+    fitsfile = sys.argv[1]
+    assert fitsfile.lower().endswith('fits'), 'File must have a fits extension'
+    assert os.path.isfile(fitsfile), '{0:s} not found'
+
+data, target = load_data(fitsfile)
 
 filters = [f.replace('_VEGA', '') for f in list(data.columns) if 'VEGA' in f]
 filters = [f for f in filters if f.endswith('W')]  # excludes narrow bands

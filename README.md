@@ -4,10 +4,12 @@ This is a bokeh app made to run on a heroku server.
 
 # Run locally
     bokeh serve --show dolphot-explorer.py
+## Use your own FITS binary table
+   serve --show dolphot-explorer.py --args [path to fits file]
 
 # Deploy on a heroku
 - Start by following directions [Getting Started on Heroku with Python](https://devcenter.heroku.com/articles/getting-started-with-python#introduction)
-- After [creating the app on the Heroku servers](https://devcenter.heroku.com/articles/getting-started-with-python#deploy-the-app) (```heroku create```) edit the name of the app in the ```Procfile``` from 
+- After [creating the app on the Heroku servers](https://devcenter.heroku.com/articles/getting-started-with-python#deploy-the-app) (```heroku create```) edit the name of the app in the ```Procfile``` from
       --allow-websocket-origin=dolphot-explorer.herokuapp.com
   to
 
