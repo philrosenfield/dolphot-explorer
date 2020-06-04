@@ -1,0 +1,16 @@
+name: dolphot-explorer
+channels:
+  - default
+  - conda-forge
+  - astropy
+dependencies:
+  - python>=3.6
+  - jupyter
+  - numpy
+  - matplotlib
+  - pandas
+  - scipy
+  - astropy
+  - astroquery
+  - bokeh
+
