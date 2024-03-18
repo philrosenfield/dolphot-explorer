@@ -1,4 +1,4 @@
-astropy==2.0.1
+astropy==5.3.3
 bokeh==0.12.13
 numpy==1.22.0
 pandas==0.20.3
